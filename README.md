@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This extension was fully implemented by an LLM, meaning that I take no responsibility for its correctness or reliability. However, I am using this extension to help me with a coursework I am doing. Use at your own risk.
+
 # NuSMV for Zed (local extension)
 
 Local NuSMV language support for `.smv` files in Zed, using a Tree-sitter grammar
@@ -12,7 +15,7 @@ or the NuSMV executable. Run NuSMV separately when you need model checking.
 - Case-sensitive section, type, built-in and CTL/LTL operator highlighting.
 - Module names, parameters, variable declarations, DEFINE names, enum members,
   constants, named specifications, integer/word literals, `--` line comments,
-    and `/-- ... --/` multiline comments.
+  and `/-- ... --/` multiline comments.
 - Matching parentheses, brackets, braces and `case`/`esac`; comment toggling,
   two-space indentation, and an outline of modules, declarations and named specs.
 - Structural highlighting rather than line-based declaration guesses: a `case`
@@ -75,10 +78,10 @@ runs `tree-sitter generate --abi 15` in `tree-sitter-nusmv/`.
 
 The extension ID is `nusmv-local`. Default destinations are:
 
-| Platform | Installed bundle |
-| --- | --- |
-| macOS | `~/Library/Application Support/Zed/extensions/installed/nusmv-local` |
-| Linux | `${XDG_DATA_HOME:-~/.local/share}/zed/extensions/installed/nusmv-local` |
+| Platform | Installed bundle                                                        |
+| -------- | ----------------------------------------------------------------------- |
+| macOS    | `~/Library/Application Support/Zed/extensions/installed/nusmv-local`    |
+| Linux    | `${XDG_DATA_HOME:-~/.local/share}/zed/extensions/installed/nusmv-local` |
 
 On Linux, a set `XDG_DATA_HOME` must be an absolute path. To target Zed Preview,
 a custom Zed data location, or an isolated integration-test directory:
