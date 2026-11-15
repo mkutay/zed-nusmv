@@ -1,0 +1,19 @@
+name = "NuSMV"
+grammar = "nusmv"
+path_suffixes = ["smv"]
+line_comments = ["-- "]
+word_characters = ["_", "$", "#", "-"]
+tab_size = 2
+increase_indent_pattern = "(^\\s*(VAR|IVAR|FROZENVAR|DEFINE|MDEFINE|ASSIGN)\\b|\\bcase\\b)\\s*(--.*)?$"
+decrease_indent_pattern = "^\\s*esac\\b"
+brackets = [
+    { start = "(", end = ")", close = true, newline = false, not_in = [
+        "comment",
+    ] },
+    { start = "[", end = "]", close = true, newline = false, not_in = [
+        "comment",
+    ] },
+    { start = "{", end = "}", close = true, newline = false, not_in = [
+        "comment",
+    ] },
+]

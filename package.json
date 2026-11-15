@@ -1,0 +1,21 @@
+{
+    "name": "zed-nusmv-local",
+    "version": "0.1.0",
+    "private": true,
+    "description": "NuSMV syntax highlighting for Zed, based on vscode-nusmv",
+    "license": "EPL-1.0",
+    "engines": {
+        "node": ">=22"
+    },
+    "scripts": {
+        "setup:wasi": "node scripts/setup-wasi.mjs",
+        "generate": "cd tree-sitter-nusmv && tree-sitter generate --abi 15",
+        "build": "node scripts/build.mjs",
+        "test": "node --test test/*.test.mjs",
+        "install:zed": "node scripts/install.mjs"
+    },
+    "devDependencies": {
+        "tree-sitter-cli": "0.25.10",
+        "web-tree-sitter": "0.25.10"
+    }
+}

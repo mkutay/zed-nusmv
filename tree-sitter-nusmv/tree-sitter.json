@@ -1,0 +1,17 @@
+{
+    "grammars": [
+        {
+            "name": "nusmv",
+            "camelcase": "NuSMV",
+            "scope": "source.nusmv",
+            "path": ".",
+            "file-types": ["smv"],
+            "highlights": "../languages/nusmv/highlights.scm"
+        }
+    ],
+    "metadata": {
+        "version": "0.1.0",
+        "license": "EPL-1.0",
+        "description": "NuSMV grammar for Zed syntax highlighting"
+    }
+}

@@ -1,0 +1,88 @@
+-- NuSMV highlighting reference: sections, types and expressions.
+MODULE main
+VAR
+  active : boolean;
+  phase : {idle, busy, done};
+  count_value : 0..10;
+  negative : -4..4;
+  bounded : array 0..3 of boolean;
+  bits : unsigned word[8];
+  signed_bits : signed word[8];
+  raw_bits : word[16];
+  child : Worker(10, active);
+  simple_child : Worker;
+  async_child : process Worker(10, active);
+IVAR
+  request : boolean;
+FROZENVAR
+  identity : 0..7;
+CONSTANTS idle_constant, done_constant;
+DEFINE
+  can_run := active & request;
+  binary_word := 0ub8_1010;
+  signed_word := 0sb8_1111;
+  octal_word := 0o8_17;
+  decimal_word := 0d_42;
+  hex_word := 0h16_FF;
+  upper_word := 0H16_Aa;
+  lower_bound := -4;
+  arithmetic := ((count_value + 1) * 2 / 2) mod 4 - 1;
+  shifted := (bits << 1) >> 1;
+  concatenated := bits :: bits;
+  set_value := {idle, busy};
+  set_union := {idle} union {done};
+  membership := phase in {idle, busy};
+  bool_ops := (!active | request) xor (active xnor request);
+  comparisons := count_value != 0 & count_value <= 10 & count_value >= 0;
+  relations := count_value < 10 & count_value > -1;
+  equivalent := (active <-> request) & (active -> request);
+  ternary := active ? idle : busy;
+  casts := toint(bool(word1(active)));
+  next_value := next(count_value);
+  selected := case
+    phase = idle : busy;
+    phase = busy : case active : done; TRUE : idle; esac;
+    TRUE : idle;
+  esac;
+  named-member$# := child.local;
+  keyword_boundaries := VARiable & AGent & boolean_value & TRUE_value & G$flag;
+ASSIGN
+  init(active) := FALSE;
+  next(active) := !active;
+  init(count_value) := 0;
+  next(count_value) := case count_value < 10 : count_value + 1; TRUE : 0; esac;
+  bounded[0] := TRUE;
+INIT count_value = 0;
+TRANS next(count_value) >= 0;
+INVAR count_value >= 0;
+FAIRNESS active;
+JUSTICE request;
+COMPASSION (active, request);
+SPEC AG (active -> EF request);
+CTLSPEC NAME ctl_property := AG (active -> AF request);
+CTLSPEC AX EX EG active;
+CTLSPEC A [active U request];
+CTLSPEC E [active U request];
+CTLSPEC EBF 0..3 active;
+CTLSPEC ABF 0..3 active;
+CTLSPEC EBG 0..3 active;
+CTLSPEC ABG 0..3 active;
+LTLSPEC NAME ltl_property := G (active -> F request);
+LTLSPEC X Y Z H O active;
+LTLSPEC (active U request) & (active V request) & (active S request) & (active T request);
+INVARSPEC count_value >= 0;
+PSLSPEC NAME psl_property := G active;
+COMPUTE MIN [active, request];
+COMPUTE MAX [active, request];
+
+MODULE Worker(limit, enabled)
+VAR local : 0..limit;
+DEFINE owner := self.local;
+DEFINE slice := self.local[3:0];
+DEFINE nested_index := self.local[local];
+INIT local = 0
+TRANS next(local) = local
+ISA Base;
+
+MODULE Base
+VAR flag : boolean;

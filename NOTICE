@@ -1,0 +1,40 @@
+NuSMV for Zed (nusmv-local)
+SPDX-License-Identifier: EPL-1.0
+
+This extension, including the new Tree-sitter grammar, Zed language support,
+build/install tooling and documentation, is distributed under the Eclipse
+Public License 1.0. See LICENSE for the complete terms.
+
+Upstream reference and attribution
+----------------------------------
+Project: vscode-nusmv (NuSMV VSCode Extension)
+Upstream author: Liam Walsh
+Upstream version: 0.10.0
+Repository: https://github.com/LiamWalsh98/vscode-nusmv
+Pinned commit: f1fa0cbea4ee70388b8caa36ef39790f6e00e185
+Upstream licence: Eclipse Public License 1.0 (EPL-1.0)
+
+The upstream Langium NuSMV grammar and language/syntax configuration informed
+this adaptation. The reference sources are under langium-nusmv/ at the pinned
+commit, including src/language/nusmv.langium. Upstream does not supply this
+Tree-sitter grammar, Zed integration, or local build/install tooling.
+
+LICENSE is an unmodified copy downloaded from:
+https://raw.githubusercontent.com/LiamWalsh98/vscode-nusmv/f1fa0cbea4ee70388b8caa36ef39790f6e00e185/langium-nusmv/LICENSE.txt
+
+Adaptation provenance
+---------------------
+The Tree-sitter/Zed adaptation and accompanying tooling/documentation were
+generated via OpenAI for the workspace owner. No personal name is asserted for
+the workspace owner. No upstream endorsement is implied. Upstream language
+server, semantic analysis and model-running features are not included.
+
+Corresponding source
+--------------------
+The local installer ships tree-sitter-nusmv/grammar.js and generated src/
+(including parser.c and Tree-sitter headers), together with package manifests,
+build scripts, README.md, LICENSE and this NOTICE beside grammars/nusmv.wasm.
+The optional tree-sitter-nusmv/tree-sitter.json is included when present.
+Keep this source and the notices available under EPL-1.0 when redistributing
+the grammar binary. Third-party tools and dependencies retain their own
+licences; the wasi-sdk download and node_modules are not included in the bundle.

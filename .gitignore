@@ -1,0 +1,6 @@
+/node_modules/
+/.tools/
+/grammars/*.wasm
+/grammars/.nusmv-build-*/
+/tree-sitter-nusmv/src/
+.DS_Store
